@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Categoría</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Detalles de Categoría</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalogo:category' %}">Volver a Categorías</a></li>
+                <li><a href="{% url 'catalogo:edit_category' category.id %}">Editar</a></li>
+                <li><a href="{% url 'catalogo:delete_category' category.id %}">Eliminar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>{{ category.name }}</h2>
+        <p>Descripción: {{ category.description }}</p>
+        <!-- Agrega más detalles aquí -->
+    </main>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido al Catálogo de Celulares</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalogo:customer' %}">Clientes</a></li>
+                <li><a href="{% url 'catalogo:category' %}">Categorías</a></li>
+                <li><a href="{% url 'catalogo:product' %}">Productos</a></li>
+                <li><a href="{% url 'catalogo:sale' %}">Ventas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Inicio</h2>
+        <p>¡Explora nuestro catálogo de celulares!</p>
+    </main>
+</body>
+</html>

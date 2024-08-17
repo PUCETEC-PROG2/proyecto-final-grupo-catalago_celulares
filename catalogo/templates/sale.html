@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Ventas</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalogo:index' %}">Inicio</a></li>
+                <li><a href="{% url 'catalogo:add_sale' %}">Añadir Venta</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            {% for sale in sales %}
+                <li><a href="{% url 'catalogo:info_sale' sale.id %}">Venta {{ sale.id }} - {{ sale.date }}</a></li>
+            {% empty %}
+                <li>No hay ventas disponibles.</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

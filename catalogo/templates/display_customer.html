@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Cliente</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Detalles del Cliente</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalogo:customer' %}">Volver a Clientes</a></li>
+                <li><a href="{% url 'catalogo:edit_customer' customer.id %}">Editar</a></li>
+                <li><a href="{% url 'catalogo:delete_customer' customer.id %}">Eliminar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>{{ customer.first_name }} {{ customer.last_name }}</h2>
+        <p>Email: {{ customer.email }}</p>
+        <p>Teléfono: {{ customer.phone }}</p>
+        <!-- Agrega más detalles aquí -->
+    </main>
+</body>
+</html>

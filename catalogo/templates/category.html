@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Categorías</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalogo:index' %}">Inicio</a></li>
+                <li><a href="{% url 'catalogo:add_category' %}">Añadir Categoría</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            {% for category in categories %}
+                <li><a href="{% url 'catalogo:info_category' category.id %}">{{ category.name }}</a></li>
+            {% empty %}
+                <li>No hay categorías disponibles.</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
