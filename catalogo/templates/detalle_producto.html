@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ producto }}{% endblock title %}
+{% block content %}
+    <div class="container mb-4">
+        <a href="{% url 'catalogo:productos' %}" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
+        <h4 class="py-4">Detalles de <strong>{{ producto | capfirst }}</strong></h4>
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <div class="card bg-secondary bg-opacity-75">
+                    <div class="card-body">
+                        <h5 class="mb-3 text-light">Características:</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-light text-dark">Precio: ${{ producto.precio }}</li>
+                            <li class="list-group-item list-group-item-light text-dark">Marca: {{ producto.marca }}</li>
+                            <li class="list-group-item list-group-item-light text-dark">Stock: {{ producto.cantidad }} unidades</li>
+                            <li class="list-group-item list-group-item-light text-dark">Procesador: {{ producto.procesador }}</li>
+                            <li class="list-group-item list-group-item-light text-dark">Pantalla: {{ producto.pantalla }}</li>
+                            <li class="list-group-item list-group-item-light text-dark">RAM: {{ producto.ram }} gb.</li>
+                            <li class="list-group-item list-group-item-light text-dark">Almacenamiento: {{ producto.almacenamiento }} gb.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                        <img src="{{ producto.imagen.url }}" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

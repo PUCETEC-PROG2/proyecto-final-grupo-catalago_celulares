@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Realizar una compra{% endblock title %}
+{% block content %}
+    <div class="container mb-4">
+        <div class="card p-4 mx-auto" style="width: 50rem;">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row mb-4 col-6 mx-auto">
+                    <div class="col-auto">
+                        <label for="id_cliente" class="fw-bold">Cliente:</label>
+                    </div>
+                    <div class="col-auto">
+                        {{ form.cliente }}
+                    </div>
+                </div>
+                <div class="row mb-4 col-6 mx-auto">
+                    <div class="col-auto me-4">
+                        <label for="id_fecha_compra" class="fw-bold">Fecha:</label>
+                    </div>
+                    <div class="col-4">
+                        <label>{{ form.fecha_compra }}</label>
+                    </div>
+                </div>
+                <div class="row mb-4 col-6 mx-auto">
+                    <div class="col-auto me-4">
+                        <label for="id_ciudad" class="fw-bold">Ciudad:</label>
+                    </div>
+                    <div class="col-4">
+                        <label>{{ form.ciudad }}</label>
+                    </div>
+                </div>
+                <h5 class="text-center fw-bold">Productos</h5>
+                <div class="table-responsive py-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Marca</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="productos" value="{{ producto.id }}" data-precio="{{ producto.precio }}">
+                                        {{ producto.nombre_producto }}
+                                    </label><br>
+                                </td>
+                                <td>
+                                    {{ producto.marca }}
+                                </td>
+                                <td>
+                                    ${{ producto.precio }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <p class="fw-bold text-center">Precio Total: <span id="precio_total">0.00</span></p>
+                <input type="hidden" name="precio_total" id="precio_total_input" value="0.00">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const productosCheckboxes = document.querySelectorAll('input[name="productos"]');
+            const precioTotalSpan = document.getElementById('precio_total');
+            const precioTotalInput = document.getElementById('precio_total_input');
+    
+            function actualizarPrecioTotal() {
+                let total = 0;
+                productosCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const precio = parseFloat(checkbox.getAttribute('data-precio'));
+                        if (!isNaN(precio)) {
+                            total += precio;
+                        }
+                    }
+                });
+                precioTotalSpan.textContent = total.toFixed(2);
+                precioTotalInput.value = total.toFixed(2);
+            }
+    
+            productosCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', actualizarPrecioTotal);
+            });
+    
+            actualizarPrecioTotal();
+        });
+    </script>
+{% endblock content %}

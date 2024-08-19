@@ -1,27 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Bienvenido al Catálogo de Celulares</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'catalogo:customer' %}">Clientes</a></li>
-                <li><a href="{% url 'catalogo:category' %}">Categorías</a></li>
-                <li><a href="{% url 'catalogo:product' %}">Productos</a></li>
-                <li><a href="{% url 'catalogo:sale' %}">Ventas</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Inicio</h2>
-        <p>¡Explora nuestro catálogo de celulares!</p>
-    </main>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock title %}
+
+{% block content %}
+        <div class="container p-3">
+                <h1 class="display-4 fw-bold">Bienvenido/Welcome</h1>
+                <p class="lead">Esta aplicacion es para poder gestionar clientes, compras y productos.</p>
+                <hr class="my-4">
+                <p>Mediante los enlaces se puede visualizar el catalogo.</p>
+                <div class="card mb-3">
+                        <div class="row g-0">
+                                <div class="col-md-6">
+                                        <img src="{% static "celulares.jpg" %}" class="img-fluid rounded-start" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="card-body text-center">
+                                                <h2 class="card-title py-4">Productos</h2>
+                                                <p class="card-text mb-4">Mira los productos disponibles</p>
+                                                <a href="{% url "catalogo:productos" %}" class="btn btn-primary p-4"><h4>Ir a Productos</h4></a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="card mb-3">
+                        <div class="row g-0">
+                                <div class="col-md-6">
+                                        <div class="card-body text-center">
+                                                <h2 class="card-title py-4">Clientes</h2>
+                                                <p class="card-text mb-4">Mira los clientes registrados</p>
+                                                <a href="{% url "catalogo:clientes" %}" class="btn btn-success p-4"><h4>Ir a Clientes</h4></a>
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <img src="{% static "clientes.jpg" %}" class="img-fluid rounded-start" alt="">
+                                </div>
+                        </div>
+                </div>
+                <div class="card mb-3">
+                        <div class="row g-0">
+                                <div class="col-md-6">
+                                        <img src="{% static "compras.webp" %}" class="img-fluid rounded-start" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="card-body text-center">
+                                                <h2 class="card-title py-4">Compras</h2>
+                                                <p class="card-text mb-4">Mira todas las compras realizadas</p>
+                                                <a href="{% url "catalogo:compras" %}" class="btn btn-secondary p-4"><h4>Ir a Compras</h4></a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+{% endblock content %}
+{% block footer %}{% endblock footer %}

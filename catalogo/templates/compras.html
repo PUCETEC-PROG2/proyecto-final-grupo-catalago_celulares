@@ -1,0 +1,47 @@
+{% extends "base.html" %} 
+{% block title %}Compras{% endblock title %} 
+{% block content %}
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body ">
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle cell-border compact stripe" id="tbl_compras">
+                    <thead class="table-dark text-center align-middle">
+                        <tr class="align-middle">
+                            <th scope="col">Id</th>
+                            <th scope="col">Fecha de Compra</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center align-middle">
+                        {% for compra in compras %}
+                        <tr class="align-middle">
+                        <th scope="row">{{ compra.id }}</th>
+                        <td>{{ compra.fecha_compra }}</td>
+                        <td>{{ compra.cliente }}</td>
+                        <td><a href="detalle_compra/{{ compra.id }}" class="btn btn-primary mb-1">
+                            <i class="fa-solid fa-eye"></i>
+                        </a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block extra_js %}
+    <script>
+    $(document).ready(function() {
+        $('#tbl_compras').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+            },
+            responsive: true,
+            order: []
+        });
+    });
+    </script>
+    {% endblock extra_js %}
+{% endblock content %}

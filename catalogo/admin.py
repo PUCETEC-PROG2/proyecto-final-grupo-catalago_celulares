@@ -1,18 +1,19 @@
 from django.contrib import admin
-from .models import Customer, Category, Product, Sale
+from .models import *
 
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
+# Register your models here.
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+@admin.register(Producto)
+class ProductoAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Sale)
-class SaleAdmin(admin.ModelAdmin):
+@admin.register(Compra)
+class CompraAdmin(admin.ModelAdmin):
     pass

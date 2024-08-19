@@ -1,0 +1,49 @@
+{% extends "base.html" %} 
+{% block title %}Productos{% endblock title %} 
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        
+        {% for producto in productos %}
+        <div class="col-md-4 col-sm-6 col-lg-3 py-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title text-center mt-2">{{ producto.nombre_producto }}</h5>
+                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="" width="" height="250px">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">Marca: {{ producto.marca }}</p>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <a href="detalle_producto/{{ producto.id }}" class="btn btn-primary mb-1">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="col-12 col-lg-4">
+                            <a href="editar_producto/{{ producto.id }}" class="btn btn btn-warning mb-1">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <a href="eliminar_producto/{{ producto.id }}" class="btn btn btn-danger" onclick="return confirmarEliminacion()">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function confirmarEliminacion() {
+        return confirm('¿Esta seguro de que deseas eliminar este producto?');
+    }
+</script>
+{% endblock content %}
